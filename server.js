@@ -1,21 +1,25 @@
-"use strict";
-const express = require("express");
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const jokebookRouter = require('./routes/jokebookRoutes');
+
 const app = express();
-
-const multer = require("multer");
-app.use(multer().none());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
-
-app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-
-const jokeRoutes = require('./routes/jokesRoutes');
-
-app.use('/jokes', jokeRoutes);
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-    console.log("Server listening on port: " + PORT + "!");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/jokebook', jokebookRouter);
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found.' });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

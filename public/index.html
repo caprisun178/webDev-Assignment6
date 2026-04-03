@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jokebook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Jokebook</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Random Joke</h2>
+      <button id="random-joke-btn">Load Random Joke</button>
+      <div id="random-joke-output"></div>
+    </section>
+
+    <section class="card">
+      <h2>Categories</h2>
+      <button id="load-categories-btn">Load Categories</button>
+      <ul id="category-list"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Search Category</h2>
+      <form id="category-search-form">
+        <input type="text" id="category-input" placeholder="Enter category name">
+        <input type="number" id="limit-input" placeholder="Optional limit" min="1">
+        <button type="submit">Search</button>
+      </form>
+      <div id="category-jokes-output"></div>
+    </section>
+
+    <section class="card">
+      <h2>Add a Joke</h2>
+      <form id="add-joke-form">
+        <input type="text" id="new-category" placeholder="Category" required>
+        <textarea id="new-setup" placeholder="Setup" required></textarea>
+        <textarea id="new-delivery" placeholder="Delivery" required></textarea>
+        <button type="submit">Add Joke</button>
+      </form>
+      <p id="form-message"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
